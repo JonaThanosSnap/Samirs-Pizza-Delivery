@@ -14,6 +14,7 @@ public class wheelPhysics : MonoBehaviour
     void Start()
     {
         wc = GetComponent<WheelCollider>();
+        wc.motorTorque = 0.00001f;
     }
 
     // Update is called once per frame

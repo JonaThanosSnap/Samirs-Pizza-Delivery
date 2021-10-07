@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44579762, g: 0.49010354, b: 0.5451563, a: 1}
+  m_IndirectSpecularColor: {r: 0.44579804, g: 0.49010378, b: 0.5451571, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &806815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
+  m_PrefabInstance: {fileID: 1495228219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &806819
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300030, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
 --- !u!1 &388375015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
@@ -149,7 +168,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388375015}
   serializedVersion: 2
-  m_Mass: 1760
+  m_Mass: 1000
   m_Drag: 1
   m_AngularDrag: 0.4
   m_UseGravity: 1
@@ -162,19 +181,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
   m_PrefabInstance: {fileID: 1495228219}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &388375019
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388375015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.0719857, y: 1.6602628, z: 6.0755177}
-  m_Center: {x: 0.0052170753, y: 1.1211795, z: 0.018953323}
 --- !u!114 &388375020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2566c618157067749b6e26f3ab9192d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antiRoll: 5000
+  antiRoll: 500
   wheelL: {fileID: 1498547109}
   wheelR: {fileID: 1366744548}
 --- !u!114 &388375021
@@ -202,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2566c618157067749b6e26f3ab9192d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antiRoll: 5000
+  antiRoll: 500
   wheelL: {fileID: 811363159}
   wheelR: {fileID: 505825578}
 --- !u!1 &505825574 stripped
@@ -223,9 +229,9 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 1
-  m_Mass: 20
+  m_Mass: 1000
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
@@ -240,6 +246,21 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &505825579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505825574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f57dae902a0d3644964b5b43408bd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelType: 0
+  maxTorque: 0
+  maxBrakeTorque: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,9 +372,9 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 1
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 1
-  m_Mass: 20
+  m_Mass: 1000
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
@@ -368,6 +389,21 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &811363160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811363155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f57dae902a0d3644964b5b43408bd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelType: 0
+  maxTorque: 0
+  maxBrakeTorque: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,9 +505,9 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 1
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 1
-  m_Mass: 20
+  m_Mass: 1000
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
@@ -486,6 +522,21 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &1366744549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366744544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f57dae902a0d3644964b5b43408bd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelType: 0
+  maxTorque: 0
+  maxBrakeTorque: 0
 --- !u!1001 &1495228219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -623,7 +674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -647,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400026, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -671,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400028, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400028, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -695,7 +746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -737,9 +788,9 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 1
+  m_SuspensionDistance: 0.2
   m_ForceAppPointDistance: 1
-  m_Mass: 20
+  m_Mass: 1000
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.8
@@ -754,6 +805,21 @@ WheelCollider:
     m_AsymptoteValue: 1
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &1498547110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498547105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f57dae902a0d3644964b5b43408bd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelType: 0
+  maxTorque: 0
+  maxBrakeTorque: 0
 --- !u!1 &1822502333
 GameObject:
   m_ObjectHideFlags: 0

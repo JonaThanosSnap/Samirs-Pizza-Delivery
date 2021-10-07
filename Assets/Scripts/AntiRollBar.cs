@@ -42,7 +42,7 @@ public class AntiRollBar : MonoBehaviour
         }
         if (groundedR)
         {
-            rb.AddForceAtPosition(transform.up * antiRollForce, wheelR.transform.position);
+            rb.AddForceAtPosition(transform.up * -antiRollForce, wheelR.transform.position);
         }
     }
 }
