@@ -18,12 +18,11 @@ public class driving : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (Input.GetKey("q"))
         {
             Vector3 force = transform.forward * speed;
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
-            startPos.y += transform.localScale.magnitude * 0.5f;
+            startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 10);
         }
@@ -31,7 +30,7 @@ public class driving : MonoBehaviour
         {
             Vector3 force = -transform.forward * speed;
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
-            startPos.y += transform.localScale.magnitude * 0.5f;
+            startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 10);
         }
@@ -39,7 +38,7 @@ public class driving : MonoBehaviour
         {
             Vector3 force = transform.forward * speed;
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
-            startPos.y += transform.localScale.magnitude * 0.5f;
+            startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 10);
         }
@@ -47,7 +46,7 @@ public class driving : MonoBehaviour
         {
             Vector3 force = -transform.forward * speed;
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
-            startPos.y += transform.localScale.magnitude * 0.5f;
+            startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 10);
         }
