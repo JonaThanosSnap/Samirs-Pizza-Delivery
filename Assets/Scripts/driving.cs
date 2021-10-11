@@ -24,7 +24,7 @@ public class driving : MonoBehaviour
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
             startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
-            Debug.DrawLine(startPos, startPos + force * 10);
+            Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
         if (Input.GetKey("s"))
         {
@@ -32,7 +32,7 @@ public class driving : MonoBehaviour
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
             startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
-            Debug.DrawLine(startPos, startPos + force * 10);
+            Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
         if (Input.GetKey("p"))
         {
@@ -40,7 +40,7 @@ public class driving : MonoBehaviour
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
             startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
-            Debug.DrawLine(startPos, startPos + force * 10);
+            Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
         if (Input.GetKey("l"))
         {
@@ -48,7 +48,7 @@ public class driving : MonoBehaviour
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
             startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
-            Debug.DrawLine(startPos, startPos + force * 10);
+            Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
     }
 }
