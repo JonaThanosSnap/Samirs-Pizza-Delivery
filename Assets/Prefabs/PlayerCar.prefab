@@ -92,7 +92,7 @@ Rigidbody:
   m_GameObject: {fileID: 7149039443150078913}
   serializedVersion: 2
   m_Mass: 1000
-  m_Drag: 1
+  m_Drag: 1.4
   m_AngularDrag: 0.4
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   snapPositionThreshold: 0
   snapRotationThreshold: 0
   snapScaleThreshold: 0
-  positionLerpSpeed: 0.85
+  positionLerpSpeed: 0.313
   rotationLerpSpeed: 0.85
   scaleLerpSpeed: 0.85
   timeCorrectionSpeed: 0.1
@@ -140,7 +140,7 @@ MonoBehaviour:
   syncVelocity: 0
   syncAngularVelocity: 0
   isPositionCompressed: 0
-  isRotationCompressed: 0
+  isRotationCompressed: 1
   isScaleCompressed: 0
   isVelocityCompressed: 0
   isAngularVelocityCompressed: 0
@@ -148,11 +148,11 @@ MonoBehaviour:
   isSmoothingAuthorityChanges: 0
   transformSource: 0
   whenToUpdateTransform: 1
-  sendRate: 30
+  sendRate: 60
   networkChannel: 1
   childObjectToSync: {fileID: 0}
-  setVelocityInsteadOfPositionOnNonOwners: 0
-  maxPositionDifferenceForVelocitySyncing: 10
+  setVelocityInsteadOfPositionOnNonOwners: 1
+  maxPositionDifferenceForVelocitySyncing: 1
   useLocalTransformOnly: 0
   ownerChangeIndicator: 1
   receivedStatesCounter: 0
