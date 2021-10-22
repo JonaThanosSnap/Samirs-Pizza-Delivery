@@ -6,6 +6,8 @@ public class wheelPhysics : MonoBehaviour
 {
     WheelCollider wc;
 
+
+
     public WheelType wheelType;
     public float maxTorque;
     public float maxBrakeTorque;
@@ -15,6 +17,7 @@ public class wheelPhysics : MonoBehaviour
     {
         wc = GetComponent<WheelCollider>();
         wc.motorTorque = 0.00001f;
+
     }
 
     // Update is called once per frame
