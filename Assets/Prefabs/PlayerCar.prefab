@@ -173,7 +173,7 @@ MonoBehaviour:
   maxSpeed: 30000
   leftSpeed: 0
   rightSpeed: 0
-  inputMode: 1
+  inputMode: 0
 --- !u!114 &388375020
 MonoBehaviour:
   m_ObjectHideFlags: 0

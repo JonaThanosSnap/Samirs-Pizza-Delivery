@@ -33,7 +33,7 @@ public class driving : NetworkBehaviour
         {
             if (Input.GetKey("q"))
             {
-                Vector3 force = transform.forward * leftSpeed;
+                Vector3 force = transform.forward * maxSpeed;
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
@@ -41,7 +41,7 @@ public class driving : NetworkBehaviour
             }
             if (Input.GetKey("s"))
             {
-                Vector3 force = -transform.forward * leftSpeed;
+                Vector3 force = -transform.forward * maxSpeed;
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
@@ -49,7 +49,7 @@ public class driving : NetworkBehaviour
             }
             if (Input.GetKey("p"))
             {
-                Vector3 force = transform.forward * rightSpeed;
+                Vector3 force = transform.forward * maxSpeed;
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
@@ -57,7 +57,7 @@ public class driving : NetworkBehaviour
             }
             if (Input.GetKey("l"))
             {
-                Vector3 force = -transform.forward * rightSpeed;
+                Vector3 force = -transform.forward * maxSpeed;
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
