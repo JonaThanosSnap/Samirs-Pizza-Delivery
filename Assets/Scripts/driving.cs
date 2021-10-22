@@ -7,7 +7,13 @@ public class driving : NetworkBehaviour
 {
     Rigidbody rb;
     Transform tf;
-    public float speed;
+    public float maxSpeed;
+
+    public float leftSpeed;
+    public float rightSpeed;
+
+    public InputMode inputMode; // Change to auto input switching later
+    
     bool isDriver;
 
     // Start is called before the first frame update
@@ -23,37 +29,64 @@ public class driving : NetworkBehaviour
     {
         if (!isDriver || !isLocalPlayer) return; // Only look for inputs if the client is the Driver
 
-        if (Input.GetKey("q"))
+        if (inputMode == InputMode.keyboard)
         {
-            Vector3 force = transform.forward * speed;
+            if (Input.GetKey("q"))
+            {
+                Vector3 force = transform.forward * leftSpeed;
+                Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+                startPos.y += transform.localScale.magnitude * 0.6f;
+                rb.AddForceAtPosition(force, startPos);
+                Debug.DrawLine(startPos, startPos + force * 0.001f);
+            }
+            if (Input.GetKey("s"))
+            {
+                Vector3 force = -transform.forward * leftSpeed;
+                Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+                startPos.y += transform.localScale.magnitude * 0.6f;
+                rb.AddForceAtPosition(force, startPos);
+                Debug.DrawLine(startPos, startPos + force * 0.001f);
+            }
+            if (Input.GetKey("p"))
+            {
+                Vector3 force = transform.forward * rightSpeed;
+                Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+                startPos.y += transform.localScale.magnitude * 0.6f;
+                rb.AddForceAtPosition(force, startPos);
+                Debug.DrawLine(startPos, startPos + force * 0.001f);
+            }
+            if (Input.GetKey("l"))
+            {
+                Vector3 force = -transform.forward * rightSpeed;
+                Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+                startPos.y += transform.localScale.magnitude * 0.6f;
+                rb.AddForceAtPosition(force, startPos);
+                Debug.DrawLine(startPos, startPos + force * 0.001f);
+            }
+        }
+
+        else if (inputMode == InputMode.arduino)
+        {
+            // Handle left side
+            Vector3 force = transform.forward * leftSpeed;
             Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
             startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 0.001f);
-        }
-        if (Input.GetKey("s"))
-        {
-            Vector3 force = -transform.forward * speed;
-            Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
-            startPos.y += transform.localScale.magnitude * 0.6f;
-            rb.AddForceAtPosition(force, startPos);
-            Debug.DrawLine(startPos, startPos + force * 0.001f);
-        }
-        if (Input.GetKey("p"))
-        {
-            Vector3 force = transform.forward * speed;
-            Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
-            startPos.y += transform.localScale.magnitude * 0.6f;
-            rb.AddForceAtPosition(force, startPos);
-            Debug.DrawLine(startPos, startPos + force * 0.001f);
-        }
-        if (Input.GetKey("l"))
-        {
-            Vector3 force = -transform.forward * speed;
-            Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+
+            //Handle right side
+            force = transform.forward * rightSpeed;
+            startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
             startPos.y += transform.localScale.magnitude * 0.6f;
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
     }
+}
+
+public enum InputMode
+{
+    keyboard,
+    arduino,
+    controller
 }

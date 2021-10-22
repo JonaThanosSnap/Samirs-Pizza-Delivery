@@ -5,12 +5,14 @@ using UnityEngine;
 public class ArduinoMove : MonoBehaviour
 {
     public SerialController serialController;
-    
+    driving driving;
+
     private float AmountToMove;
     // Start is called before the first frame update
     void Start()
     {
-        serialController = GameObject.Find("Cube").GetComponent<SerialController>();
+        serialController = GetComponent<SerialController>();
+        driving = GetComponent<driving>();
     }
 
     // Update is called once per frame
@@ -18,13 +20,11 @@ public class ArduinoMove : MonoBehaviour
     {
         string message = serialController.ReadSerialMessage(); 
         if(message != null) {
-            float data = float.Parse(message);
-            //Debug.Log(message);
-            MoveObject(data);
-        }
-    }
+            string[] inputString = message.Split('\t');
+            Vector2 inputs = new Vector2(float.Parse(inputString[0]), float.Parse(inputString[1]));
 
-    void MoveObject(float direction) {
-        transform.Translate(Vector3.left * 0.01f * direction, Space.World);
+            driving.leftSpeed = inputs.x * driving.maxSpeed;
+            driving.rightSpeed = inputs.y * driving.maxSpeed;
+        }
     }
 }
