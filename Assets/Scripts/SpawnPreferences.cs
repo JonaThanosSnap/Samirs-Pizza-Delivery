@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using Unity.Netcode;
 
 public class SpawnPreferences : NetworkBehaviour
 {
@@ -17,7 +17,7 @@ public class SpawnPreferences : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer)
+        if (!IsLocalPlayer)
         {
             cam.enabled = false;
             return;
