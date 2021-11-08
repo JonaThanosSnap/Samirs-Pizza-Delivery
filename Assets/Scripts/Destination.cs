@@ -34,7 +34,7 @@ public class Destination : MonoBehaviour
             parkTime = DateTime.Now.Subtract(parkStartTime);
             if (parkTime.Seconds > 5)
             {
-                Debug.Log("The penis is parked");
+                Debug.Log("Samir has successfully parked!");
             }
 
         }
