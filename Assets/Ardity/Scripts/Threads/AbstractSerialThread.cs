@@ -10,7 +10,11 @@ using UnityEngine;
 
 using System;
 using System.IO;
+<<<<<<< HEAD
 using System.IO.Ports; 
+=======
+using System.IO.Ports;
+>>>>>>> main
 using System.Collections;
 using System.Threading;
 
@@ -44,7 +48,11 @@ public abstract class AbstractSerialThread
 
     // Internal synchronized queues used to send and receive messages from the
     // serial device. They serve as the point of communication between the
+<<<<<<< HEAD
     // Unity thread and the SerialComm thread.
+=======
+    // Unity thread and the Ardity thread.
+>>>>>>> main
     private Queue inputQueue, outputQueue;
 
     // Indicates when this thread should stop executing. When SerialController
@@ -115,7 +123,11 @@ public abstract class AbstractSerialThread
 
 
     /**************************************************************************
+<<<<<<< HEAD
      * Methods intended to be invoked from the SerialComm thread (the one
+=======
+     * Methods intended to be invoked from the Ardity thread (the one
+>>>>>>> main
      * created by the SerialController).
      *************************************************************************/
 

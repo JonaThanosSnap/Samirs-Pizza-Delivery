@@ -46,7 +46,7 @@ public class PlayerHandler : NetworkManager
         // When starting a Relay server, both instances of connection data are identical.
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(ipv4address, port, allocationIdBytes, key, connectionData);
         NetworkManager.Singleton.StartHost();
-        GameObject go = Instantiate(ps.driverPrefab, new Vector3(0,60,0), Quaternion.identity);
+        GameObject go = Instantiate(ps.driverPrefab, new Vector3(80,30,0), Quaternion.identity);
         go.GetComponent<NetworkObject>().SpawnAsPlayerObject(LocalClientId);
         yield return null;
     }

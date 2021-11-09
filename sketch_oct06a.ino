@@ -27,17 +27,6 @@ void loop() {
   x2Value = (x2Read) - bias2;
   x2Value = x2Value >=0 ? x2Value / (1023-bias2) : x2Value / bias2;
 
-<<<<<<< HEAD
-  if (x1Value != 0 || x2Value != 0) {
-    Serial.print(x1Value);
-    Serial.print("\t");
-    Serial.println(x2Value);
-  }
-  
-  //lcd
-  lcd.setCursor(0, 1);
-  lcd.print(millis());
-=======
   Serial.print(x1Value);
   Serial.print("\t");
   Serial.println(x2Value);
@@ -45,5 +34,4 @@ void loop() {
   //lcd
   lcd.setCursor(0, 1);
   lcd.print(millis() / 1000);
->>>>>>> main
 }

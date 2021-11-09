@@ -8,6 +8,15 @@ public class driving : NetworkBehaviour
     Rigidbody rb;
     Transform tf;
     public float maxSpeed;
+<<<<<<< HEAD
+=======
+
+    public float leftSpeed;
+    public float rightSpeed;
+
+    public InputMode inputMode; // Change to auto input switching later
+    
+>>>>>>> main
     bool isDriver;
     public float leftSpeed;
     public float rightSpeed;
@@ -30,7 +39,11 @@ public class driving : NetworkBehaviour
         {
             if (Input.GetKey("q"))
             {
+<<<<<<< HEAD
                 Vector3 force = transform.forward * maxSpeed;
+=======
+                Vector3 force = transform.forward * leftSpeed;
+>>>>>>> main
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
@@ -38,7 +51,11 @@ public class driving : NetworkBehaviour
             }
             if (Input.GetKey("s"))
             {
+<<<<<<< HEAD
                 Vector3 force = -transform.forward * maxSpeed;
+=======
+                Vector3 force = -transform.forward * leftSpeed;
+>>>>>>> main
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
@@ -46,7 +63,11 @@ public class driving : NetworkBehaviour
             }
             if (Input.GetKey("p"))
             {
+<<<<<<< HEAD
                 Vector3 force = transform.forward * maxSpeed;
+=======
+                Vector3 force = transform.forward * rightSpeed;
+>>>>>>> main
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
@@ -54,7 +75,11 @@ public class driving : NetworkBehaviour
             }
             if (Input.GetKey("l"))
             {
+<<<<<<< HEAD
                 Vector3 force = -transform.forward * maxSpeed;
+=======
+                Vector3 force = -transform.forward * rightSpeed;
+>>>>>>> main
                 Vector3 startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
                 startPos.y += transform.localScale.magnitude * 0.6f;
                 rb.AddForceAtPosition(force, startPos);
