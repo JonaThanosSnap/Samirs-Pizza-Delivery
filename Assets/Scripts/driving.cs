@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using Unity.Netcode;
 
 public class driving : NetworkBehaviour
 {
@@ -13,21 +13,19 @@ public class driving : NetworkBehaviour
     public float rightSpeed;
 
     public InputMode inputMode; // Change to auto input switching later
-    
-    bool isDriver;
+  
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 4f;
-        if (isServer) isDriver = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isDriver || !isLocalPlayer) return; // Only look for inputs if the client is the Driver
+        if (!IsLocalPlayer) return; // Only look for inputs if the client is the Driver
 
         if (inputMode == InputMode.keyboard)
         {
