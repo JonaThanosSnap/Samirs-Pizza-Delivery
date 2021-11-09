@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrefabSelector : MonoBehaviour
 {
-    public GameObject driverPrefab, navPrefab;
+    public GameObject driverPrefab, navPrefab, canvasPrefab;
 
     // Start is called before the first frame update
     void Start()

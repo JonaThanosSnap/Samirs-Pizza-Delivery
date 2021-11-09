@@ -48,6 +48,7 @@ public class PlayerHandler : NetworkManager
         NetworkManager.Singleton.StartHost();
         GameObject go = Instantiate(ps.driverPrefab, new Vector3(80,30,0), Quaternion.identity);
         go.GetComponent<NetworkObject>().SpawnAsPlayerObject(LocalClientId);
+        Instantiate(ps.canvasPrefab, Vector3.zero, Quaternion.identity);
         yield return null;
     }
 
