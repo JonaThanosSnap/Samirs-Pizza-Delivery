@@ -8,21 +8,24 @@ using Unity.Services.Relay.Models;
 using System;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
+using UnityEngine.UI;
 
 public class PlayerHandler : NetworkManager
 {
     int maxConnections = 2;
+    ulong driverId, navId;
 
     PrefabSelector ps;
 
     private void Start()
     {
         ps = GetComponent<PrefabSelector>();
+        // static variable in another scene for the code, if code is Null or Empty then host, else join
     }
 
     public IEnumerator HostGame()
     {
-        
+
         var authTask = Authenticate();
         while (!authTask.IsCompleted) yield return null;
         string pID = authTask.Result;
@@ -41,14 +44,11 @@ public class PlayerHandler : NetworkManager
         var (ipv4address, port, allocationIdBytes, connectionData, key, joinCode) = serverRelayUtilityTask.Result;
 
         // Display the joinCode to the user.
-        print(joinCode);
+        GameObject.Find("CodeText").GetComponent<Text>().text = joinCode;
 
         // When starting a Relay server, both instances of connection data are identical.
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(ipv4address, port, allocationIdBytes, key, connectionData);
         NetworkManager.Singleton.StartHost();
-        GameObject go = Instantiate(ps.driverPrefab, new Vector3(80,30,0), Quaternion.identity);
-        go.GetComponent<NetworkObject>().SpawnAsPlayerObject(LocalClientId);
-        Instantiate(ps.canvasPrefab, Vector3.zero, Quaternion.identity);
         yield return null;
     }
 
@@ -110,8 +110,6 @@ public class PlayerHandler : NetworkManager
         // When connecting as a client to a Relay server, connectionData and hostConnectionData are different.
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(ipv4address, port, allocationIdBytes, key, connectionData, hostConnectionData);
         NetworkManager.Singleton.StartClient();
-        GameObject go = Instantiate(ps.navPrefab, Vector3.zero, Quaternion.identity);
-        go.GetComponent<NetworkObject>().SpawnAsPlayerObject(LocalClientId);
         yield return null;
     }
 
@@ -151,50 +149,18 @@ public class PlayerHandler : NetworkManager
             return null;
         }
     }
-}
-/*    public override void OnStartServer()
+
+    public void StartGame() // Only runs on host
     {
-        base.OnStartServer();
 
-        connectedClients = new List<GameObject>();
 
-        NetworkServer.RegisterHandler<netID>(spawnCar);
-    }
+        // Initialize Host
+        GameObject d = Instantiate(ps.driverPrefab, new Vector3(70, 30, 0), Quaternion.identity);
+        d.GetComponent<NetworkObject>().SpawnAsPlayerObject(driverId);
 
-    public override void OnClientConnect(NetworkConnection conn)
-    {
-        base.OnClientConnect(conn);
+        // Initialize Client
+        GameObject n = Instantiate(ps.navPrefab, Vector3.zero, Quaternion.identity);
+        n.GetComponent<NetworkObject>().SpawnAsPlayerObject(navId);
 
-        netID driver = new netID { isDriver = false };
-        if (numPlayers == 0) // subject to change when we handle multiple rooms
-        {
-            driver = new netID { isDriver = true }; // way to choose driver/navigator through server
-        }
-        conn.Send(driver);
-    }
-
-    public void spawnCar(NetworkConnection conn, netID netid)
-    {
-        if (numPlayers == 0)
-        {
-            GameObject car = Instantiate(playerPrefab);
-
-            NetworkServer.AddPlayerForConnection(conn, car);
-        } else
-        {
-            GameObject nav = Instantiate(spawnPrefabs[0]);
-            NetworkServer.AddPlayerForConnection(conn, nav);
-        }
-    }
-
-    public override void OnServerPrepared(string hostAddress, ushort hostPort)
-    {
-        base.OnServerPrepared(hostAddress, hostPort);
-        print("Starting server with address " + hostAddress + " with port " + hostPort.ToString());
     }
 }
-
-public struct netID : message
-{
-    public bool isDriver;
-}*/
