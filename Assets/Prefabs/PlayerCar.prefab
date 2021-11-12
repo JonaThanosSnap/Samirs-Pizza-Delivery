@@ -114,7 +114,7 @@ MonoBehaviour:
   maxSpeed: 30000
   leftSpeed: 0
   rightSpeed: 0
-  inputMode: 0
+  inputMode: 2
   active: 0
 --- !u!114 &388375020
 MonoBehaviour:
@@ -406,9 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f57dae902a0d3644964b5b43408bd9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wheelType: 0
-  maxTorque: 0
-  maxBrakeTorque: 0
+  wheelType: -511363040
+  maxTorque: 6.08e-43
+  maxBrakeTorque: -3.0718152e+20
 --- !u!146 &505825578
 WheelCollider:
   m_ObjectHideFlags: 0

@@ -130,6 +130,26 @@ public class driving : NetworkBehaviour
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
+
+        else if (inputMode == InputMode.controller)
+        {
+            leftSpeed = Input.GetAxis("Left") * maxSpeed;
+            rightSpeed = Input.GetAxis("Right") * maxSpeed;
+
+            // Handle left side
+            Vector3 force = transform.forward * leftSpeed;
+            Vector3 startPos = transform.position + (Quaternion.AngleAxis(-90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+            startPos.y += transform.localScale.magnitude * 0.6f;
+            rb.AddForceAtPosition(force, startPos);
+            Debug.DrawLine(startPos, startPos + force * 0.001f);
+
+            //Handle right side
+            force = transform.forward * rightSpeed;
+            startPos = transform.position + (Quaternion.AngleAxis(90, Vector3.up) * transform.forward * (float)(transform.localScale.magnitude));
+            startPos.y += transform.localScale.magnitude * 0.6f;
+            rb.AddForceAtPosition(force, startPos);
+            Debug.DrawLine(startPos, startPos + force * 0.001f);
+        }
     }
 }
 
