@@ -10,5 +10,13 @@ public class MainMenu : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
 
     }
+
+    public void QuitGame (){
+
+        Debug.Log("Quit");
+
+        Application.Quit();
+
+    }
     
 }
