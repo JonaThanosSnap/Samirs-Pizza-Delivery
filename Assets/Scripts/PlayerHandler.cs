@@ -9,6 +9,7 @@ using System;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class PlayerHandler : NetworkManager
 {
@@ -20,7 +21,14 @@ public class PlayerHandler : NetworkManager
     private void Start()
     {
         ps = GetComponent<PrefabSelector>();
-        // static variable in another scene for the code, if code is Null or Empty then host, else join
+
+        if (GameLoadParameters.clientType == ClientType.Host)
+        {
+            StartCoroutine(HostGame());
+        } else
+        {
+            StartCoroutine(JoinGame(GameLoadParameters.joinCode));
+        }
     }
 
     public IEnumerator HostGame()
@@ -121,9 +129,9 @@ public class PlayerHandler : NetworkManager
         {
             allocation = await Relay.Instance.JoinAllocationAsync(joinCode);
         }
-        catch
+        catch (Exception e)
         {
-            Debug.LogError("Relay create join code request failed");
+            Debug.LogError(e.ToString());
             throw;
         }
 

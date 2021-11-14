@@ -114,7 +114,7 @@ MonoBehaviour:
   maxSpeed: 30000
   leftSpeed: 0
   rightSpeed: 0
-  inputMode: 2
+  inputMode: 0
   active: 0
 --- !u!114 &388375020
 MonoBehaviour:
