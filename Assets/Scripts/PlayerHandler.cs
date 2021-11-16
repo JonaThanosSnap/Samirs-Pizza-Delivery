@@ -10,6 +10,7 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using TMPro;
 
 public class PlayerHandler : NetworkManager
 {
@@ -52,7 +53,7 @@ public class PlayerHandler : NetworkManager
         var (ipv4address, port, allocationIdBytes, connectionData, key, joinCode) = serverRelayUtilityTask.Result;
 
         // Display the joinCode to the user.
-        GameObject.Find("CodeText").GetComponent<Text>().text = joinCode;
+        GameObject.Find("CodeText").GetComponent<TMP_Text>().text = joinCode;
 
         // When starting a Relay server, both instances of connection data are identical.
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(ipv4address, port, allocationIdBytes, key, connectionData);

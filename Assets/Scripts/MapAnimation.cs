@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mapbox;
+using Mapbox.Unity.Map;
 
 public class MapAnimation : MonoBehaviour
 {
