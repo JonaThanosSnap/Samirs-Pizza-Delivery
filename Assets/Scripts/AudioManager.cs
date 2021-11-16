@@ -8,7 +8,14 @@ using UnityEngine.Assertions;
 
 public class AudioManager : MonoBehaviour
 {
-    int maxConcurrentAudioSources = 256;
+    [Range(0.0f, 1.0f)]
+    public float volume;
+
+    [SerializeField]
+    public int maxConcurrentAudioSources;
+
+    [SerializeField]
+    public List<string> sceneLoadBGMList; // Audio files to play on Start()
 
     private Queue<int> availableIDs;
     private Dictionary<int, AudioSource> audioSources; // Stores (ID, AudioSource) pairs for easy access
@@ -24,7 +31,7 @@ public class AudioManager : MonoBehaviour
         // Load AudioClips
         foreach (string audioFile in Directory.GetFiles(Application.dataPath + "/Resources/Audio/", "*.mp3")) {
             string filename = Path.GetFileName(audioFile);
-            audioClips.Add(filename, Resources.Load<AudioClip>("Audio/" + Path.GetFileNameWithoutExtension(filename)));
+            audioClips.Add(filename.Substring(0, filename.LastIndexOf(".mp3")), Resources.Load<AudioClip>("Audio/" + Path.GetFileNameWithoutExtension(filename)));
         }
 
         // Fill availableIDs
@@ -32,7 +39,10 @@ public class AudioManager : MonoBehaviour
             availableIDs.Enqueue(id);
         }
 
-        Play("simian_segue.mp3", true);
+        // Play sceneLoadBGMs
+        foreach (string audioClip in sceneLoadBGMList) {
+            Play(audioClip, true);
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +56,7 @@ public class AudioManager : MonoBehaviour
             if (!audioSourceEntry.Value.isPlaying) {
                 stoppedIDs.Add(audioSourceEntry.Key);
             }
+            audioSourceEntry.Value.volume = volume;
         }
 
         // Deletes stopped AudioSources and adds id to availableIDs
@@ -84,7 +95,7 @@ public class AudioManager : MonoBehaviour
         return id;
     }
 
-    // TODO add pausing functionality?
+    // TODO add pausing
 
     public void Stop(int audioSourceID)
     {
