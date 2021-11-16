@@ -19,6 +19,10 @@ public class CameraFollow : MonoBehaviour
 
         // Smoothly move the camera towards that target position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+
+        // TODO Look at mouse
+        //Vector3 mousePos = new Vector3();
+        //mousePos.x = Input.
         transform.LookAt(target);
     }
 }
