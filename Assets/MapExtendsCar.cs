@@ -12,7 +12,8 @@ public class MapExtendsCar : MonoBehaviour
         AbstractMap map = GetComponent<AbstractMap>();
         
         map.SetExtent(MapExtentType.RangeAroundTransform);
-        map.SetExtentOptions(new RangeAroundTransformTileProviderOptions{ targetTransform = car.transform, visibleBuffer = 1, disposeBuffer = 1});
+        int buffer = map.gameObject.name == "NavMap" ? 2 : 1;
+        map.SetExtentOptions(new RangeAroundTransformTileProviderOptions{ targetTransform = car.transform, visibleBuffer = buffer, disposeBuffer = buffer});
     }
 
     // Update is called once per frame

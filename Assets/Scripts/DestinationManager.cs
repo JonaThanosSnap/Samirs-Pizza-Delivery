@@ -30,11 +30,15 @@ public class DestinationManager : MonoBehaviour
 
     public void CreateDestination()
     {
-/*        destinationLatLong = map.CenterLatitudeLongitude;
-        //destinationLatLong = new Vector2d(40.750833, -73.9825);
-        destinationWorldPos = map.GeoToWorldPosition(destinationLatLong, false);*/
+        /*        destinationLatLong = map.CenterLatitudeLongitude;
+                //destinationLatLong = new Vector2d(40.750833, -73.9825);
+                destinationWorldPos = map.GeoToWorldPosition(destinationLatLong, false);*/
 
-        Transform destinationTile = navMap.transform.GetChild(Random.Range(1, navMap.transform.childCount - 1));
+        Transform destinationTile = null;
+        while (destinationTile == null || destinationTile.gameObject.name == "TileProvider")
+        {
+            destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
+        }
         Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
         transformDestinationVertex.y = 0;
 

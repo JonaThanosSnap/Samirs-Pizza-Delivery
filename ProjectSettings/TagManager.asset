@@ -10,6 +10,8 @@ TagManager:
   - AudioManager
   - NavMap
   - NavCam
+  - NavMarker
+  - Navigator
   layers:
   - Default
   - TransparentFX
