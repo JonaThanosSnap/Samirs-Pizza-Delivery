@@ -109,4 +109,9 @@ public class AudioManager : MonoBehaviour
             Stop(audioSourceEntry.Key);
         }
     }
+
+    // TODO adjust to logarithmic scale of volume
+    public void SetVolume(float volume) {
+        this.volume = Mathf.Clamp(volume, 0.0f, 1.0f);
+    }
 }

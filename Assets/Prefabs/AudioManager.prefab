@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 1
   maxConcurrentAudioSources: 256
-  sceneLoadBGM: simian_segue
+  sceneLoadBGMList: []
