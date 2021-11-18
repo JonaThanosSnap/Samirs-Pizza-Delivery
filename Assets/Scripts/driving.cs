@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using Mapbox.Unity.Map;
 
 public class driving : NetworkBehaviour
 {
@@ -34,10 +35,16 @@ public class driving : NetworkBehaviour
         GameObject.Find("MenuCanvas").Destroy();
 
         // Initialize Map
-        GameObject.FindGameObjectWithTag("Map").transform.position = Vector3.zero;
-        GameObject.FindGameObjectWithTag("Map").transform.localScale = Vector3.one;
-        GameObject.FindGameObjectWithTag("Map").GetComponent<MapAnimation>().enabled = false;
-        GameObject.FindGameObjectWithTag("Map").transform.rotation = Quaternion.Euler(0, 0, 0);
+        GameObject map = GameObject.FindGameObjectWithTag("Map");
+        map.transform.position = Vector3.zero;
+        map.transform.localScale = Vector3.one;
+        map.GetComponent<MapAnimation>().enabled = false;
+        map.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        map.GetComponent<AbstractMap>().SetExtent(MapExtentType.RangeAroundTransform);
+        map.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = this.gameObject.transform, disposeBuffer = 1, visibleBuffer = 1 });
+
+        GameObject.FindGameObjectWithTag("NavMap").GetComponent<AbstractMap>().Initialize(new Mapbox.Utils.Vector2d(40.7484665, -73.985542), 16);
 
         stopwatchCanvas = Instantiate(ps.canvasPrefab, Vector3.zero, Quaternion.identity);
         countdownTxt = stopwatchCanvas.GetComponent<SamirWatch>().countdownText.GetComponent<Text>();
@@ -59,6 +66,7 @@ public class driving : NetworkBehaviour
         countdownTxt.text = "GO!";
         // Initialize Logic
         stopwatchCanvas.GetComponent<SamirWatch>().enabled = true;
+        if (!IsHost) GameObject.Find("Minimap").GetComponent<ToggleMap>().enabled = true;
     }
 
     // Update is called once per frame

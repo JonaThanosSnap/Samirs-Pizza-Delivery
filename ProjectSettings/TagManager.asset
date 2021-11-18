@@ -8,6 +8,8 @@ TagManager:
   - Map
   - StopwatchText
   - AudioManager
+  - NavMap
+  - NavCam
   layers:
   - Default
   - TransparentFX
