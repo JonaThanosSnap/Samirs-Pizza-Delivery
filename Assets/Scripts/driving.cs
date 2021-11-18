@@ -40,11 +40,22 @@ public class driving : NetworkBehaviour
         map.transform.localScale = Vector3.one;
         map.GetComponent<MapAnimation>().enabled = false;
         map.transform.rotation = Quaternion.Euler(0, 0, 0);
+        /* map.GetComponent<MapExtendsCar>().enabled = true;*/
 
         map.GetComponent<AbstractMap>().SetExtent(MapExtentType.RangeAroundTransform);
-        map.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = this.gameObject.transform, disposeBuffer = 1, visibleBuffer = 1 });
+        int buffer = 1;
+        map.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = this.transform, visibleBuffer = buffer, disposeBuffer = buffer });
 
-        GameObject.FindGameObjectWithTag("NavMap").GetComponent<AbstractMap>().Initialize(new Mapbox.Utils.Vector2d(40.7484665, -73.985542), 16);
+        GameObject navMap = GameObject.FindGameObjectWithTag("NavMap");
+        navMap.GetComponent<AbstractMap>().SetExtent(MapExtentType.RangeAroundTransform);
+        buffer = 2;
+        navMap.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = GameObject.FindGameObjectWithTag("Navigator").transform, visibleBuffer = buffer, disposeBuffer = buffer });
+        /*navMap.GetComponent<MapExtendsCar>().enabled = true;*/
+        navMap.GetComponent<AbstractMap>().Initialize(new Mapbox.Utils.Vector2d(40.7484665, -73.985542), 16);
+        navMap.transform.position = new Vector3(0, -100, 0);
+        
+
+        GameObject.Find("DestinationManager").GetComponent<DestinationManager>().CreateDestination();
 
         stopwatchCanvas = Instantiate(ps.canvasPrefab, Vector3.zero, Quaternion.identity);
         countdownTxt = stopwatchCanvas.GetComponent<SamirWatch>().countdownText.GetComponent<Text>();
