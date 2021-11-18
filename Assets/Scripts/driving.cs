@@ -45,6 +45,9 @@ public class driving : NetworkBehaviour
         map.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = this.gameObject.transform, disposeBuffer = 1, visibleBuffer = 1 });
 
         GameObject.FindGameObjectWithTag("NavMap").GetComponent<AbstractMap>().Initialize(new Mapbox.Utils.Vector2d(40.7484665, -73.985542), 16);
+        GameObject.FindGameObjectWithTag("NavMap").transform.position = new Vector3(0, -100, 0);
+
+        GameObject.Find("DestinationManager").GetComponent<DestinationManager>().CreateDestination();
 
         stopwatchCanvas = Instantiate(ps.canvasPrefab, Vector3.zero, Quaternion.identity);
         countdownTxt = stopwatchCanvas.GetComponent<SamirWatch>().countdownText.GetComponent<Text>();

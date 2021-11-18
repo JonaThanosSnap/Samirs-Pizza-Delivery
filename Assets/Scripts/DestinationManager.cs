@@ -30,13 +30,15 @@ public class DestinationManager : MonoBehaviour
 
     public void CreateDestination()
     {
-        destinationLatLong = map.CenterLatitudeLongitude;
+/*        destinationLatLong = map.CenterLatitudeLongitude;
         //destinationLatLong = new Vector2d(40.750833, -73.9825);
-        destinationWorldPos = map.GeoToWorldPosition(destinationLatLong, false);
+        destinationWorldPos = map.GeoToWorldPosition(destinationLatLong, false);*/
 
-        mapTransform = map.Root;
+        Transform destinationTile = navMap.transform.GetChild(Random.Range(1, navMap.transform.childCount - 1));
+        Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
+        transformDestinationVertex.y = 0;
 
-        Instantiate(destinationPrefab,destinationWorldPos, Quaternion.identity, mapTransform);
+        Instantiate(destinationPrefab,transformDestinationVertex, Quaternion.identity, mapTransform);
 
         Debug.Log("Destination Latitude and Longitude: " + destinationLatLong.x.ToString() + ", " + destinationLatLong.y.ToString());
         Debug.Log("Destination Unity World Position: " + destinationWorldPos.x.ToString() + ", " + destinationWorldPos.y.ToString() + ", " + destinationWorldPos.z.ToString());
