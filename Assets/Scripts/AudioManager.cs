@@ -114,4 +114,12 @@ public class AudioManager : MonoBehaviour
     public void SetVolume(float volume) {
         this.volume = Mathf.Clamp(volume, 0.0f, 1.0f);
     }
+
+    public AudioSource soundEffect;
+
+    public void playSoundEffect(){
+
+        soundEffect.Play();
+
+    }
 }
