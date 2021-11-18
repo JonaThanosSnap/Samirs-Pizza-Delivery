@@ -39,7 +39,7 @@ public class DestinationManager : NetworkBehaviour
                 destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
             }
             Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
-            transformDestinationVertex.y = 0;
+            transformDestinationVertex.y = 4;
 
             GameObject dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity, mapTransform);
             dest.GetComponent<NetworkObject>().Spawn();
