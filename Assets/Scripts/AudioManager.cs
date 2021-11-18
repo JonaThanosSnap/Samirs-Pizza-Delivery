@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     public List<string> sceneLoadBGMList; // Audio files to play on Start()
 
+    private string[] clickSounds = {"clack", "click01", "click02", "click03", "click04", "coarse_click", "funny_click", "ping", "spacey_click", "tiny_click"};
     private Queue<int> availableIDs;
     private Dictionary<int, AudioSource> audioSources; // Stores (ID, AudioSource) pairs for easy access
     private Dictionary<string, AudioClip> audioClips;
@@ -114,6 +115,18 @@ public class AudioManager : MonoBehaviour
         Play(audioFile, true);
     }
 
+    public void PlayOnce(string audioFile) {
+        // Workaround for button UI OnClick() requiring up to one parameter
+        Play(audioFile, false);
+    }
+
+    public void PlayRandomClickSound() {
+        // Chooses a random click audio clip and plays it once
+        System.Random random = new System.Random();
+        int idx = random.Next(0, clickSounds.Length);
+        Play(clickSounds[idx], false); 
+    }
+
     public void Stop(int audioSourceID)
     {
         // Stops an AudioSource. It will get deleted in the next call to Update()
@@ -132,13 +145,5 @@ public class AudioManager : MonoBehaviour
     // TODO adjust to logarithmic scale of volume
     public void SetVolume(float volume) {
         this.volume = Mathf.Clamp(volume, 0.0f, 1.0f);
-    }
-
-    public AudioSource soundEffect;
-
-    public void playSoundEffect(){
-
-        soundEffect.Play();
-
     }
 }
