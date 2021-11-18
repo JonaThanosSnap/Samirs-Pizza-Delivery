@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -75,14 +74,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!1 &80081642223700154
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +258,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8996660658943529582}
   - component: {fileID: 7263158610183708578}
-  - component: {fileID: 241627490082029579}
   m_Layer: 0
   m_Name: NavCam
   m_TagString: NavCam
@@ -332,14 +322,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &241627490082029579
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6339051480116449943}
-  m_Enabled: 1
 --- !u!54 &388375017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -434,6 +416,18 @@ MonoBehaviour:
   driverPrefab: {fileID: 0}
   navPrefab: {fileID: 0}
   canvasPrefab: {fileID: 8079094073624925819, guid: 73ba093f83610b94a81519411a8653db, type: 3}
+--- !u!114 &950923214513290654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149039443150078913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b026df7d9e30345a16d161770e2f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1183222273978006779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +511,14 @@ MonoBehaviour:
   messageListener: {fileID: 0}
   reconnectionDelay: 1000
   maxUnreadMessages: 1
+--- !u!81 &3342645947985783198
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149039443150078913}
+  m_Enabled: 1
 --- !u!64 &806819
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -948,14 +950,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
---- !u!1 &7149039443150078941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100030, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
-  m_PrefabInstance: {fileID: 7149039443149981027}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7149039443150078943 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100028, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
+  m_PrefabInstance: {fileID: 7149039443149981027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7149039443150078941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100030, guid: bd5297d9a5b63ad48912675a84018a7b, type: 3}
   m_PrefabInstance: {fileID: 7149039443149981027}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7149039443150078937 stripped

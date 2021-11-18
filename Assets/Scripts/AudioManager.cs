@@ -28,10 +28,22 @@ public class AudioManager : MonoBehaviour
         audioSources = new Dictionary<int, AudioSource>();
         audioClips = new Dictionary<string, AudioClip>();
 
+        // Get audio file names
+        string[] validExtensions = {".mp3", ".wav"};
+        List<string> audioFiles = new List<string>();
+        foreach (string audioFile in Directory.EnumerateFiles(Application.dataPath + "/Resources/Audio/")) {
+            foreach (string ext in validExtensions) {
+                if (audioFile.EndsWith(ext)) {
+                    audioFiles.Add(audioFile);
+                    break;
+                }
+            }
+        }
+
         // Load AudioClips
-        foreach (string audioFile in Directory.GetFiles(Application.dataPath + "/Resources/Audio/", "*.mp3")) {
+        foreach (string audioFile in audioFiles) {
             string filename = Path.GetFileName(audioFile);
-            audioClips.Add(filename.Substring(0, filename.LastIndexOf(".mp3")), Resources.Load<AudioClip>("Audio/" + Path.GetFileNameWithoutExtension(filename)));
+            audioClips.Add(filename.Substring(0, filename.LastIndexOf(".")), Resources.Load<AudioClip>("Audio/" + Path.GetFileNameWithoutExtension(filename)));
         }
 
         // Fill availableIDs
@@ -65,6 +77,8 @@ public class AudioManager : MonoBehaviour
             audioSources.Remove(id);
             availableIDs.Enqueue(id);
         }
+
+        Debug.Log(audioSources.Count);
     }
 
     // AUDIO CONTROL
@@ -95,12 +109,17 @@ public class AudioManager : MonoBehaviour
         return id;
     }
 
-    // TODO add pausing
+    public void PlayLooped(string audioFile) {
+        // Workaround for button UI OnClick() requiring up to one parameter
+        Play(audioFile, true);
+    }
 
     public void Stop(int audioSourceID)
     {
         // Stops an AudioSource. It will get deleted in the next call to Update()
-        audioSources[audioSourceID].Stop();
+        if (audioSources.ContainsKey(audioSourceID)) {
+            audioSources[audioSourceID].Stop();
+        }
     }
 
     public void StopAll() {
