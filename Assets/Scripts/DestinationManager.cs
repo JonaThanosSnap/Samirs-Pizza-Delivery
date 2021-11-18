@@ -7,9 +7,6 @@ using Unity.Netcode;
 
 public class DestinationManager : NetworkBehaviour
 {
-
-    Vector2d destinationLatLong;
-    Vector3 destinationWorldPos;
     Transform mapTransform;    
 
     public GameObject destinationPrefab;
@@ -43,9 +40,6 @@ public class DestinationManager : NetworkBehaviour
 
             GameObject dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity, mapTransform);
             dest.GetComponent<NetworkObject>().Spawn();
-
-            Debug.Log("Destination Latitude and Longitude: " + destinationLatLong.x.ToString() + ", " + destinationLatLong.y.ToString());
-            Debug.Log("Destination Unity World Position: " + destinationWorldPos.x.ToString() + ", " + destinationWorldPos.y.ToString() + ", " + destinationWorldPos.z.ToString());
         }
     }
 
