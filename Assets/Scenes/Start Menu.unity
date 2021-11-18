@@ -218,6 +218,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &48996239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,6 +900,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &235411195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,6 +1472,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &445333300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1679,6 +1715,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &630054647
@@ -2413,6 +2461,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &774457657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2690,6 +2750,10 @@ PrefabInstance:
     - target: {fileID: 1274757627776110617, guid: c135e3b63dde96a4bbeb40b80bb65a54, type: 3}
       propertyPath: sceneLoadBGMList.Array.data[1]
       value: PizzaParlor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274757627776110617, guid: c135e3b63dde96a4bbeb40b80bb65a54, type: 3}
+      propertyPath: sceneLoadBGMList.Array.data[2]
+      value: int_idle
       objectReference: {fileID: 0}
     - target: {fileID: 1274757627776110619, guid: c135e3b63dde96a4bbeb40b80bb65a54, type: 3}
       propertyPath: m_Name
@@ -3966,6 +4030,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1320384143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4930,6 +5006,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2005170965}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayRandomClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: clack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1868231160
