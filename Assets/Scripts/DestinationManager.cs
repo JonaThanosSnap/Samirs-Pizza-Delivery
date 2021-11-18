@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mapbox.Unity.Map;
 using Mapbox.Utils;
+using Unity.Netcode;
 
-public class DestinationManager : MonoBehaviour
+public class DestinationManager : NetworkBehaviour
 {
 
     Vector2d destinationLatLong;
@@ -30,22 +31,22 @@ public class DestinationManager : MonoBehaviour
 
     public void CreateDestination()
     {
-        /*        destinationLatLong = map.CenterLatitudeLongitude;
-                //destinationLatLong = new Vector2d(40.750833, -73.9825);
-                destinationWorldPos = map.GeoToWorldPosition(destinationLatLong, false);*/
-
-        Transform destinationTile = null;
-        while (destinationTile == null || destinationTile.gameObject.name == "TileProvider")
+        if (IsHost)
         {
-            destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
+            Transform destinationTile = null;
+            while (destinationTile == null || destinationTile.gameObject.name == "TileProvider")
+            {
+                destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
+            }
+            Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
+            transformDestinationVertex.y = 0;
+
+            GameObject dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity, mapTransform);
+            dest.GetComponent<NetworkObject>().Spawn();
+
+            Debug.Log("Destination Latitude and Longitude: " + destinationLatLong.x.ToString() + ", " + destinationLatLong.y.ToString());
+            Debug.Log("Destination Unity World Position: " + destinationWorldPos.x.ToString() + ", " + destinationWorldPos.y.ToString() + ", " + destinationWorldPos.z.ToString());
         }
-        Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
-        transformDestinationVertex.y = 0;
-
-        Instantiate(destinationPrefab,transformDestinationVertex, Quaternion.identity, mapTransform);
-
-        Debug.Log("Destination Latitude and Longitude: " + destinationLatLong.x.ToString() + ", " + destinationLatLong.y.ToString());
-        Debug.Log("Destination Unity World Position: " + destinationWorldPos.x.ToString() + ", " + destinationWorldPos.y.ToString() + ", " + destinationWorldPos.z.ToString());
     }
 
 }
