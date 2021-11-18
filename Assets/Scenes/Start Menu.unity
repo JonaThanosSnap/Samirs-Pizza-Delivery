@@ -1997,11 +1997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1274757627776110617, guid: c135e3b63dde96a4bbeb40b80bb65a54, type: 3}
       propertyPath: sceneLoadBGMList.Array.data[0]
-      value: restaurant_ambience
+      value: NoisyPizza
       objectReference: {fileID: 0}
     - target: {fileID: 1274757627776110617, guid: c135e3b63dde96a4bbeb40b80bb65a54, type: 3}
       propertyPath: sceneLoadBGMList.Array.data[1]
-      value: la_vie_en_rose
+      value: PizzaParlor
       objectReference: {fileID: 0}
     - target: {fileID: 1274757627776110619, guid: c135e3b63dde96a4bbeb40b80bb65a54, type: 3}
       propertyPath: m_Name
