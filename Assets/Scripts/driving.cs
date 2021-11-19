@@ -53,7 +53,10 @@ public class driving : NetworkBehaviour
         /*navMap.GetComponent<MapExtendsCar>().enabled = true;*/
         navMap.GetComponent<AbstractMap>().Initialize(new Mapbox.Utils.Vector2d(40.7484665, -73.985542), 16);
         navMap.transform.position = new Vector3(0, -100, 0);
-        
+
+        AudioManager audMan = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        audMan.StopAll();
+        audMan.PlayLooped("dk_crash_course");
 
         GameObject.Find("DestinationManager").GetComponent<DestinationManager>().CreateDestination();
 
