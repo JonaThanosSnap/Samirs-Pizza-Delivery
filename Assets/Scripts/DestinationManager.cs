@@ -7,10 +7,8 @@ using Unity.Netcode;
 
 public class DestinationManager : NetworkBehaviour
 {
-    Transform mapTransform;    
 
     public GameObject destinationPrefab;
-    public AbstractMap map;
     public AbstractMap navMap;
 
     // Start is called before the first frame update
@@ -36,9 +34,9 @@ public class DestinationManager : NetworkBehaviour
                 destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
             }
             Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
-            transformDestinationVertex.y = 4;
+            transformDestinationVertex.y = 0;
 
-            GameObject dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity, mapTransform);
+            GameObject dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity);
             dest.GetComponent<NetworkObject>().Spawn();
         }
     }
