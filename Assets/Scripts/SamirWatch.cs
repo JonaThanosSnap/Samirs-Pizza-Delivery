@@ -10,13 +10,32 @@ public class SamirWatch : MonoBehaviour
     TimeSpan time;
     public Text currentTimeText;
     public Text countdownText;
-       
 
+    public SerialController serialController;
+
+    IEnumerator coroutine;
     // Start is called before the first frame update
     void Start()
     {
         currentTime = 0;
         enabled = false;
+        serialController = GameObject.FindGameObjectWithTag("Player").GetComponent<SerialController>();
+        coroutine = updateLCD(0.05f);
+        StartCoroutine(coroutine);
+    }
+
+    IEnumerator updateLCD(float waitTime) {
+        while(true) {
+            yield return new WaitForSeconds(waitTime);
+            if (!serialController.enabled)
+            {
+                serialController.enabled = true;
+            }
+            else
+            {
+                serialController.SendSerialMessage(currentTimeText.text);
+            }
+        }
     }
 
     // Update is called once per frame

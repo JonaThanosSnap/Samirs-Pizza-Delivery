@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTimeText: {fileID: 8079094074351464487}
   countdownText: {fileID: 5926241051835633665}
+  serialController: {fileID: 0}
 --- !u!114 &4155306932862393718
 MonoBehaviour:
   m_ObjectHideFlags: 0
