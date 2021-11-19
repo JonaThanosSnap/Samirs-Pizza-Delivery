@@ -78,8 +78,6 @@ public class AudioManager : MonoBehaviour
             audioSources.Remove(id);
             availableIDs.Enqueue(id);
         }
-
-        Debug.Log(audioSources.Count);
     }
 
     // AUDIO CONTROL

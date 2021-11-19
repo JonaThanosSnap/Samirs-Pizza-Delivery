@@ -10,16 +10,16 @@ public class SpawnArrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        arrow = GameObject.FindGameObjectWithTag("MarkerArrow");
     }
 
     public void SetMarkerObject(GameObject obj)
     {
-        destinationMarker = obj;
-        arrow = GameObject.FindGameObjectWithTag("MarkerArrow");
+        destinationMarker = obj;  
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         Vector3 normalizedPos = GetComponent<Camera>().WorldToViewportPoint(destinationMarker.transform.position);
         if (!(0 <= normalizedPos.x && normalizedPos.x <= 1 && 0 <= normalizedPos.y && normalizedPos.y <= 1))

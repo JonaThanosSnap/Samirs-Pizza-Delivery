@@ -2,17 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Destination : MonoBehaviour
+public class Destination : NetworkBehaviour
 {
 
     DateTime parkStartTime;
     TimeSpan parkTime;
 
+    DestinationManager destMan;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        destMan = GameObject.Find("DestinationManager").GetComponent<DestinationManager>();
         GameObject.FindGameObjectWithTag("NavCam").GetComponent<SpawnArrow>().SetMarkerObject(this.gameObject);
     }
 
@@ -32,9 +36,22 @@ public class Destination : MonoBehaviour
         if (collider.attachedRigidbody.velocity.magnitude < 0.5)
         {
             parkTime = DateTime.Now.Subtract(parkStartTime);
-            if (parkTime.Seconds > 5)
+            if (parkTime.Seconds > 3)
             {
-                Debug.Log("Samir has successfully parked!");
+                destMan.pizzasDelivered++;
+                if (destMan.pizzasDelivered != 10)
+                {
+                    GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
+                    if (IsHost)
+                    {
+                        destMan.CreateDestination();
+                        this.gameObject.Destroy();
+                    }
+                } else
+                {
+                    // EndGame();
+                }
+                
             }
 
         }

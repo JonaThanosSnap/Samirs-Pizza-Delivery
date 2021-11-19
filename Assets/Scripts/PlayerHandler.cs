@@ -164,7 +164,7 @@ public class PlayerHandler : NetworkManager
 
 
         // Initialize Host
-        GameObject d = Instantiate(ps.driverPrefab, new Vector3(70, 30, 0), Quaternion.identity);
+        GameObject d = Instantiate(ps.driverPrefab, new Vector3(70, 0, 0), Quaternion.identity);
         d.GetComponent<NetworkObject>().SpawnAsPlayerObject(driverId);
 
         // Initialize Client
