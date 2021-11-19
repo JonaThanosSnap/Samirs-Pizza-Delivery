@@ -7,12 +7,9 @@ using Unity.Netcode;
 
 public class DestinationManager : NetworkBehaviour
 {
-<<<<<<< HEAD
     Transform mapTransform;
 
     public float pizzasDelivered = 0;
-=======
->>>>>>> 73f9ae7b4baeb508e066a6f255d98a76ea6e4a92
 
     public GameObject destinationPrefab;
     public AbstractMap navMap;

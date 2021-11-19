@@ -46,7 +46,7 @@ public class Destination : NetworkBehaviour
         if (collider.attachedRigidbody.velocity.magnitude < parkSpeedRequired)
         {
             parkTime = DateTime.Now.Subtract(parkStartTime);
-<<<<<<< HEAD
+
             if (parkTime.Seconds > 3)
             {
                 destMan.pizzasDelivered++;
@@ -65,9 +65,8 @@ public class Destination : NetworkBehaviour
                 
             }
 
-=======
             parkProgress = (float) (parkTime.Seconds + parkTime.Milliseconds / 1000.0) / parkTimeRequired;
->>>>>>> 73f9ae7b4baeb508e066a6f255d98a76ea6e4a92
+
         }
         else
         {
