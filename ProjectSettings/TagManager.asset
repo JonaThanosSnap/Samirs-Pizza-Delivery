@@ -12,6 +12,7 @@ TagManager:
   - NavCam
   - NavMarker
   - Navigator
+  - MarkerArrow
   layers:
   - Default
   - TransparentFX

@@ -11,11 +11,7 @@ public class SpawnPreferences : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO move this somewhere appropriate
-        // Switch songs
-        AudioManager audioManager = GameObject.FindGameObjectsWithTag("AudioManager")[0].GetComponent<AudioManager>();
-        audioManager.StopAll();
-        audioManager.Play("dk_crash_course", true);
+        
     }
 
     // Update is called once per frame
