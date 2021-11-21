@@ -18,7 +18,7 @@ public class ArduinoMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (driving.inputMode == InputMode.arduino)
+        if (GameLoadParameters.inputMode == InputMode.arduino)
         {
             if (!serialController.enabled) serialController.enabled = true;
 

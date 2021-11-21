@@ -20,8 +20,10 @@ public class SamirWatch : MonoBehaviour
         currentTime = 0;
         enabled = false;
         serialController = GameObject.FindGameObjectWithTag("Player").GetComponent<SerialController>();
-        coroutine = updateLCD(0.05f);
-        StartCoroutine(coroutine);
+        if (GameLoadParameters.inputMode == InputMode.arduino)
+        {
+            StartCoroutine(updateLCD(0.05f));
+        }
     }
 
     IEnumerator updateLCD(float waitTime) {
@@ -35,6 +37,7 @@ public class SamirWatch : MonoBehaviour
             {
                 serialController.SendSerialMessage(currentTimeText.text);
             }
+            yield return null;
         }
     }
 

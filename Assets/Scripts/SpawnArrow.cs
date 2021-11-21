@@ -21,18 +21,22 @@ public class SpawnArrow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 normalizedPos = GetComponent<Camera>().WorldToViewportPoint(destinationMarker.transform.position);
-        if (!(0 <= normalizedPos.x && normalizedPos.x <= 1 && 0 <= normalizedPos.y && normalizedPos.y <= 1))
+        if (destinationMarker)
         {
-            arrow.SetActive(true);
-            Vector2 toMarker = new Vector2(destinationMarker.transform.position.x - transform.position.x, destinationMarker.transform.position.z - transform.position.z);
-            toMarker = toMarker.normalized * 30;
-            arrow.transform.position = new Vector3(transform.position.x, 0, transform.position.z) + new Vector3(toMarker.x, -51, toMarker.y);
-            arrow.transform.rotation = Quaternion.LookRotation(new Vector3(toMarker.x, 0, toMarker.y));
-            arrow.transform.Rotate(0, 180, 0);
-        } else
-        {
-            arrow.SetActive(false);
+            Vector3 normalizedPos = GetComponent<Camera>().WorldToViewportPoint(destinationMarker.transform.position);
+            if (!(0 <= normalizedPos.x && normalizedPos.x <= 1 && 0 <= normalizedPos.y && normalizedPos.y <= 1))
+            {
+                arrow.SetActive(true);
+                Vector2 toMarker = new Vector2(destinationMarker.transform.position.x - transform.position.x, destinationMarker.transform.position.z - transform.position.z);
+                toMarker = toMarker.normalized * 30;
+                arrow.transform.position = new Vector3(transform.position.x, 0, transform.position.z) + new Vector3(toMarker.x, -51, toMarker.y);
+                arrow.transform.rotation = Quaternion.LookRotation(new Vector3(toMarker.x, 0, toMarker.y));
+                arrow.transform.Rotate(0, 180, 0);
+            }
+            else
+            {
+                arrow.SetActive(false);
+            }
         }
     }
 }

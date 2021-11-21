@@ -15,7 +15,6 @@ public class PlayerCarSFX : MonoBehaviour
     {
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         rb = GetComponent<Rigidbody>();
-        driving = GetComponent<driving>();
         audioSourceID = audioManager.Play(audioClip, true);
     }
 
@@ -24,7 +23,7 @@ public class PlayerCarSFX : MonoBehaviour
     {
         string prevAudioClip = audioClip;
 
-        if (driving.inputMode == InputMode.keyboard)
+        if (GameLoadParameters.inputMode == InputMode.keyboard)
         {
             if (Input.GetKey("q") || Input.GetKey("p") || Input.GetKey("s") || Input.GetKey("l"))
             {
@@ -36,7 +35,7 @@ public class PlayerCarSFX : MonoBehaviour
             }
         }
 
-        else if (driving.inputMode == InputMode.arduino)
+        else if (GameLoadParameters.inputMode == InputMode.arduino)
         {
             if (Mathf.Abs(Input.GetAxis("Left")) > 0.02f || Mathf.Abs(Input.GetAxis("Right")) > 0.02f)
             {
@@ -48,7 +47,7 @@ public class PlayerCarSFX : MonoBehaviour
             }
         }
 
-        else if (driving.inputMode == InputMode.controller)
+        else if (GameLoadParameters.inputMode == InputMode.controller)
         {
             if (Mathf.Abs(driving.leftSpeed) > 0 || Mathf.Abs(driving.rightSpeed) > 0)
             {

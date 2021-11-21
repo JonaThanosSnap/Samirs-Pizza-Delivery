@@ -15,8 +15,6 @@ public class driving : NetworkBehaviour
     public float rightSpeed;
     PrefabSelector ps;
 
-    public InputMode inputMode; // Change to auto input switching later
-
     public bool active;
     GameObject stopwatchCanvas;
     Text countdownTxt;
@@ -100,7 +98,7 @@ public class driving : NetworkBehaviour
         if (!IsLocalPlayer) return; // Only look for inputs if the client is the Driver
 
         // DRIVER ONLY
-        if (inputMode == InputMode.keyboard)
+        if (GameLoadParameters.inputMode == InputMode.keyboard)
         {
             if (Input.GetKey("q"))
             {
@@ -136,7 +134,7 @@ public class driving : NetworkBehaviour
             }
         }
 
-        else if (inputMode == InputMode.arduino)
+        else if (GameLoadParameters.inputMode == InputMode.arduino)
         {
             // Handle left side
             Vector3 force = transform.forward * leftSpeed;
@@ -153,7 +151,7 @@ public class driving : NetworkBehaviour
             Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
 
-        else if (inputMode == InputMode.controller)
+        else if (GameLoadParameters.inputMode == InputMode.controller)
         {
             leftSpeed = Input.GetAxis("Left") * maxSpeed;
             rightSpeed = Input.GetAxis("Right") * maxSpeed;
@@ -173,11 +171,4 @@ public class driving : NetworkBehaviour
             Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
     }
-}
-
-public enum InputMode
-{
-    keyboard,
-    arduino,
-    controller
 }
