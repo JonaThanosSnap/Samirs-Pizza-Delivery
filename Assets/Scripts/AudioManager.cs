@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     private Dictionary<int, AudioSource> audioSources; // Stores (ID, AudioSource) pairs for easy access
     private Dictionary<string, AudioClip> audioClips;
 
+    public List<AudioClip> audioFiles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,22 +31,10 @@ public class AudioManager : MonoBehaviour
         audioSources = new Dictionary<int, AudioSource>();
         audioClips = new Dictionary<string, AudioClip>();
 
-        // Get audio file names
-        string[] validExtensions = {".mp3", ".wav"};
-        List<string> audioFiles = new List<string>();
-        foreach (string audioFile in Directory.EnumerateFiles(Application.dataPath + "/Resources/Audio/")) {
-            foreach (string ext in validExtensions) {
-                if (audioFile.EndsWith(ext)) {
-                    audioFiles.Add(audioFile);
-                    break;
-                }
-            }
-        }
-
         // Load AudioClips
-        foreach (string audioFile in audioFiles) {
-            string filename = Path.GetFileName(audioFile);
-            audioClips.Add(filename.Substring(0, filename.LastIndexOf(".")), Resources.Load<AudioClip>("Audio/" + Path.GetFileNameWithoutExtension(filename)));
+        foreach (AudioClip audioFile in audioFiles) {
+            string filename = audioFile.name;
+            audioClips.Add(filename, audioFile);
         }
 
         // Fill availableIDs
