@@ -4,7 +4,6 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
 using Mapbox.Unity.Map;
-using System;
 
 public class driving : NetworkBehaviour
 {
@@ -22,7 +21,7 @@ public class driving : NetworkBehaviour
 
     public NetworkVariable<Vector3> rbVel = new NetworkVariable<Vector3>();
     public NetworkVariable<int> Score = new NetworkVariable<int>();
-    public NetworkVariable<TimeSpan> stopwatch = new NetworkVariable<TimeSpan>();
+    public NetworkVariable<int> stopwatch = new NetworkVariable<int>();
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +30,7 @@ public class driving : NetworkBehaviour
         if (IsHost)
         {
             Score.Value = 0;
+            stopwatch.Value = 0;
         }
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 4f;

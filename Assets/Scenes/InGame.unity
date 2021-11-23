@@ -9531,6 +9531,7 @@ MonoBehaviour:
   pizzasDelivered: 0
   destinationPrefab: {fileID: 6067237676964828487, guid: c33f047d168a737439563275e5355d4c, type: 3}
   navMap: {fileID: 2104459652}
+  deliveriesRequired: 10
 --- !u!4 &1586998357
 Transform:
   m_ObjectHideFlags: 0

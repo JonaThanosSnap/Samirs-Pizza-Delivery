@@ -14,6 +14,12 @@ public class Destination : NetworkBehaviour
     float parkSpeedRequired = 0.5f;
     public GameObject destWaypoint;
     public GameObject parkWaypoint;
+    GameObject car;
+    driving driving;
+
+    DateTime lapStartTime;
+
+    public int maxScore;
 
     DestinationManager destMan;
 
@@ -21,8 +27,13 @@ public class Destination : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        car = GameObject.FindGameObjectWithTag("Player");
+        driving = car.GetComponent<driving>();
         destMan = GameObject.Find("DestinationManager").GetComponent<DestinationManager>();
         GameObject.FindGameObjectWithTag("NavCam").GetComponent<SpawnArrow>().SetMarkerObject(this.gameObject);
+        lapStartTime = DateTime.Now;
+
+        maxScore = (int)Vector3.Distance(car.transform.position, transform.position);
     }
 
     // Update is called once per frame
@@ -43,38 +54,41 @@ public class Destination : NetworkBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (IsHost)
+        if (driving.rbVel.Value.magnitude < parkSpeedRequired)
         {
-            if (collider.attachedRigidbody.velocity.magnitude < parkSpeedRequired)
+            parkTime = DateTime.Now.Subtract(parkStartTime);
+
+            if (parkTime.Seconds > 3 && IsHost)
             {
-                parkTime = DateTime.Now.Subtract(parkStartTime);
+                TimeSpan lapElapsedTime = DateTime.Now.Subtract(lapStartTime);
+                int score = lapElapsedTime.Seconds / (maxScore / 300);
 
-                if (parkTime.Seconds > 3)
+                driving.stopwatch.Value = GameObject.FindGameObjectWithTag("Stopwatch").GetComponent<SamirWatch>().time;
+                driving.updateScore(score);
+
+                destMan.pizzasDelivered++;
+                this.gameObject.Destroy();
+
+                if (destMan.pizzasDelivered < destMan.deliveriesRequired)
                 {
-                    destMan.pizzasDelivered++;
-                    this.gameObject.Destroy();
-
-                    if (destMan.pizzasDelivered < 10)
-                    {
-                        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
-                        destMan.CreateDestination();
-                    }
-                    else
-                    {
-                        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().StopAll();
-                        NetworkManager.Singleton.GetComponent<PlayerHandler>().EndGame();
-                    }
-
+                    GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
+                    destMan.CreateDestination();
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().StopAll();
+                    NetworkManager.Singleton.GetComponent<PlayerHandler>().EndGame(driving.Score.Value, driving.stopwatch.Value);
                 }
 
-                parkProgress = (float)(parkTime.Seconds + parkTime.Milliseconds / 1000.0) / parkTimeRequired;
+            }
 
-            }
-            else
-            {
-                parkStartTime = DateTime.Now;
-                parkProgress = 0;
-            }
+            parkProgress = (float)(parkTime.Seconds + parkTime.Milliseconds / 1000.0) / parkTimeRequired;
+
+        }
+        else
+        {
+            parkStartTime = DateTime.Now;
+            parkProgress = 0;
         }
     }
 
@@ -110,15 +124,14 @@ public class Destination : NetworkBehaviour
         {
             destMan.pizzasDelivered++;
 
-            if (destMan.pizzasDelivered < 1)
+            if (destMan.pizzasDelivered < destMan.deliveriesRequired)
             {
                 GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
-                destMan.CreateDestination();
             }
             else
             {
                 GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().StopAll();
-                NetworkManager.Singleton.GetComponent<PlayerHandler>().EndGame();
+                NetworkManager.Singleton.GetComponent<PlayerHandler>().EndGame(driving.Score.Value, driving.stopwatch.Value);
             }
         }
     }

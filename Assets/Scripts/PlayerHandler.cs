@@ -185,23 +185,23 @@ public class PlayerHandler : NetworkManager
 
     }
 
-    public void EndGame()
+    public void EndGame(int s, TimeSpan t)
     {
-        // Destroy Networked Objects
-        if (IsHost)
-        {
-            GameObject.FindGameObjectWithTag("Player").Destroy();
-            GameObject.FindGameObjectWithTag("Navigator").Destroy();
-        }
+        GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        GameObject.FindGameObjectWithTag("Navigator").SetActive(false);
 
         // Destroy client-side objects
         map.SetActive(false);
         navMap.SetActive(false);
+        string timeTaken = t.ToString(@"mm\:ss\:fff");
         GameObject.FindGameObjectWithTag("Stopwatch").Destroy();
 
         // Show end screen
         endCanvas.SetActive(true);
         menuCam.SetActive(true);
+
+        GameObject.Find("ScoreText").GetComponent<TMP_Text>().text = "Total Score: " + s.ToString();
+        GameObject.Find("TimeText").GetComponent<TMP_Text>().text = "Elapsed Time: " + timeTaken;
     }
 
 

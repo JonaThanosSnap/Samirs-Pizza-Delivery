@@ -7,7 +7,7 @@ using System;
 public class SamirWatch : MonoBehaviour
 {
     float currentTime;
-    TimeSpan time;
+    public TimeSpan time;
     public Text currentTimeText;
     public Text countdownText;
 
