@@ -53,7 +53,7 @@ public class Destination : NetworkBehaviour
                 {
                     destMan.pizzasDelivered++;
                     this.gameObject.Destroy();
-0
+
                     if (destMan.pizzasDelivered < 10)
                     {
                         GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
