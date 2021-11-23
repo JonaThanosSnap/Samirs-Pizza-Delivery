@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
 using Mapbox.Unity.Map;
+using System;
 
 public class driving : NetworkBehaviour
 {
@@ -20,12 +21,17 @@ public class driving : NetworkBehaviour
     Text countdownTxt;
 
     public NetworkVariable<Vector3> rbVel = new NetworkVariable<Vector3>();
+    public NetworkVariable<int> Score = new NetworkVariable<int>();
+    public NetworkVariable<TimeSpan> stopwatch = new NetworkVariable<TimeSpan>();
 
     // Start is called before the first frame update
     void Start()
     {
         ps = GetComponent<PrefabSelector>();
-
+        if (IsHost)
+        {
+            Score.Value = 0;
+        }
         rb = GetComponent<Rigidbody>();
         rb.maxAngularVelocity = 4f;
 
@@ -91,8 +97,6 @@ public class driving : NetworkBehaviour
     {
         if (!active) return;
 
-        rbVel.Value = rb.velocity;
-
         // BOTH DRIVER AND NAVIGATOR
         if (countdownTxt.color.a > 0)
         {
@@ -104,6 +108,7 @@ public class driving : NetworkBehaviour
 
         if (!IsLocalPlayer) return; // Only look for inputs if the client is the Driver
 
+        rbVel.Value = rb.velocity;
         // DRIVER ONLY
         if (GameLoadParameters.inputMode == InputMode.keyboard)
         {
@@ -177,5 +182,10 @@ public class driving : NetworkBehaviour
             rb.AddForceAtPosition(force, startPos);
             Debug.DrawLine(startPos, startPos + force * 0.001f);
         }
+    }
+
+    public void updateScore(int score)
+    {
+        Score.Value += score;
     }
 }
