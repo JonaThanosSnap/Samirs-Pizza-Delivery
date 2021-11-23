@@ -19,6 +19,8 @@ public class driving : NetworkBehaviour
     GameObject stopwatchCanvas;
     Text countdownTxt;
 
+    public NetworkVariable<Vector3> rbVel = new NetworkVariable<Vector3>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +30,14 @@ public class driving : NetworkBehaviour
         rb.maxAngularVelocity = 4f;
 
         // De-initialize Menu
-        GameObject.Find("MenuCam").Destroy();
-        GameObject.Find("MenuCar").Destroy();
-        GameObject.Find("MenuCanvas").Destroy();
+        GameObject.Find("MenuCam").SetActive(false);
+        GameObject.Find("MenuCar").SetActive(false);
+        GameObject.Find("MenuCanvas").SetActive(false);
+        NetworkManager.Singleton.GetComponent<PlayerHandler>().endCanvas.SetActive(false);
 
         // Initialize Map
-        GameObject map = GameObject.FindGameObjectWithTag("Map");
+        GameObject map = NetworkManager.Singleton.GetComponent<PlayerHandler>().map;
+        map.SetActive(true);
         map.transform.position = Vector3.zero;
         map.transform.localScale = Vector3.one;
         map.GetComponent<MapAnimation>().enabled = false;
@@ -44,7 +48,7 @@ public class driving : NetworkBehaviour
         int buffer = 1;
         map.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = this.transform, visibleBuffer = buffer, disposeBuffer = buffer });
 
-        GameObject navMap = GameObject.FindGameObjectWithTag("NavMap");
+        GameObject navMap = NetworkManager.Singleton.GetComponent<PlayerHandler>().navMap;
         navMap.GetComponent<AbstractMap>().SetExtent(MapExtentType.RangeAroundTransform);
         buffer = 2;
         navMap.GetComponent<AbstractMap>().SetExtentOptions(new RangeAroundTransformTileProviderOptions { targetTransform = GameObject.FindGameObjectWithTag("Navigator").transform, visibleBuffer = buffer, disposeBuffer = buffer });
@@ -52,9 +56,10 @@ public class driving : NetworkBehaviour
         navMap.GetComponent<AbstractMap>().Initialize(new Mapbox.Utils.Vector2d(40.7484665, -73.985542), 16);
         navMap.transform.position = new Vector3(0, -100, 0);
 
+
         AudioManager audMan = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         audMan.StopAll();
-        audMan.PlayLooped("dk_crash_course");
+        audMan.PlayLooped("racetomtfuji");
 
         GameObject.Find("DestinationManager").GetComponent<DestinationManager>().CreateDestination();
 
@@ -85,6 +90,8 @@ public class driving : NetworkBehaviour
     void FixedUpdate()
     {
         if (!active) return;
+
+        rbVel.Value = rb.velocity;
 
         // BOTH DRIVER AND NAVIGATOR
         if (countdownTxt.color.a > 0)

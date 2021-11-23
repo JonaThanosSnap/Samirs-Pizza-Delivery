@@ -9,9 +9,9 @@ public class Destination : NetworkBehaviour
 
     DateTime parkStartTime;
     TimeSpan parkTime;
-    float parkProgress = 0;
-    float parkTimeRequired = 3;
-    float parkSpeedRequired = (float) 0.5;
+    float parkProgress = 0f;
+    float parkTimeRequired = 3f;
+    float parkSpeedRequired = 0.5f;
     public GameObject destWaypoint;
     public GameObject parkWaypoint;
 
@@ -43,37 +43,39 @@ public class Destination : NetworkBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.attachedRigidbody.velocity.magnitude < parkSpeedRequired)
+        if (IsHost)
         {
-            parkTime = DateTime.Now.Subtract(parkStartTime);
-
-            if (parkTime.Seconds > 3)
+            if (collider.attachedRigidbody.velocity.magnitude < parkSpeedRequired)
             {
-                destMan.pizzasDelivered++;
-                if (destMan.pizzasDelivered != 10)
+                parkTime = DateTime.Now.Subtract(parkStartTime);
+
+                if (parkTime.Seconds > 3)
                 {
-                    GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
-                    if (IsHost)
+                    destMan.pizzasDelivered++;
+                    this.gameObject.Destroy();
+0
+                    if (destMan.pizzasDelivered < 10)
                     {
+                        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
                         destMan.CreateDestination();
-                        this.gameObject.Destroy();
                     }
-                } else
-                {
-                    // EndGame();
+                    else
+                    {
+                        GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().StopAll();
+                        NetworkManager.Singleton.GetComponent<PlayerHandler>().EndGame();
+                    }
+
                 }
-                
+
+                parkProgress = (float)(parkTime.Seconds + parkTime.Milliseconds / 1000.0) / parkTimeRequired;
+
             }
-
-            parkProgress = (float) (parkTime.Seconds + parkTime.Milliseconds / 1000.0) / parkTimeRequired;
-
+            else
+            {
+                parkStartTime = DateTime.Now;
+                parkProgress = 0;
+            }
         }
-        else
-        {
-            parkStartTime = DateTime.Now;
-            parkProgress = 0;
-        }
-
     }
 
 
@@ -102,4 +104,22 @@ public class Destination : NetworkBehaviour
         parkWaypoint.transform.localScale = new Vector3(1, parkProgress, 1);
     }
 
+    public override void OnDestroy()
+    {
+        if (!IsHost)
+        {
+            destMan.pizzasDelivered++;
+
+            if (destMan.pizzasDelivered < 1)
+            {
+                GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().Play("successfuldelivery", false);
+                destMan.CreateDestination();
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>().StopAll();
+                NetworkManager.Singleton.GetComponent<PlayerHandler>().EndGame();
+            }
+        }
+    }
 }

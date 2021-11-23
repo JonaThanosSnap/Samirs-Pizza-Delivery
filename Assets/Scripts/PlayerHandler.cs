@@ -11,6 +11,7 @@ using Unity.Services.Authentication;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using TMPro;
+using Mapbox.Unity.Map;
 
 public class PlayerHandler : NetworkManager
 {
@@ -18,10 +19,22 @@ public class PlayerHandler : NetworkManager
     ulong driverId, navId;
 
     PrefabSelector ps;
+    
+
+    public GameObject menuCam, menuCanvas, menuCar, endCanvas, map, navMap;
 
     private void Start()
     {
         ps = GetComponent<PrefabSelector>();
+
+        menuCam = GameObject.Find("MenuCam");
+        menuCanvas = GameObject.Find("MenuCanvas");
+        menuCar = GameObject.Find("MenuCar");
+        endCanvas = GameObject.Find("EndCanvas");
+        map = GameObject.FindGameObjectWithTag("Map");
+        navMap = GameObject.FindGameObjectWithTag("NavMap");
+
+        endCanvas.SetActive(false);
 
         if (GameLoadParameters.clientType == ClientType.Host)
         {
@@ -162,7 +175,6 @@ public class PlayerHandler : NetworkManager
     public void StartGame() // Only runs on host
     {
 
-
         // Initialize Host
         GameObject d = Instantiate(ps.driverPrefab, new Vector3(70, 0, 0), Quaternion.identity);
         d.GetComponent<NetworkObject>().SpawnAsPlayerObject(driverId);
@@ -171,5 +183,32 @@ public class PlayerHandler : NetworkManager
         GameObject n = Instantiate(ps.navPrefab, Vector3.zero, Quaternion.identity);
         n.GetComponent<NetworkObject>().SpawnAsPlayerObject(navId);
 
+    }
+
+    public void EndGame()
+    {
+        // Destroy Networked Objects
+        if (IsHost)
+        {
+            GameObject.FindGameObjectWithTag("Player").Destroy();
+            GameObject.FindGameObjectWithTag("Navigator").Destroy();
+        }
+
+        // Destroy client-side objects
+        map.SetActive(false);
+        navMap.SetActive(false);
+        GameObject.FindGameObjectWithTag("Stopwatch").Destroy();
+
+        // Show end screen
+        endCanvas.SetActive(true);
+        menuCam.SetActive(true);
+    }
+
+
+
+    public void RestartGame()
+    {
+        NetworkManager.Singleton.Shutdown();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Start Menu", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }
