@@ -61,7 +61,7 @@ public class Destination : NetworkBehaviour
             if (parkTime.Seconds > 3 && IsHost)
             {
                 TimeSpan lapElapsedTime = DateTime.Now.Subtract(lapStartTime);
-                int score = lapElapsedTime.Seconds / (int)Mathf.ceil(maxScore / 300.0);
+                int score = lapElapsedTime.Seconds / (int)Mathf.Ceil(maxScore / 300.0f);
 
                 driving.stopwatch.Value = GameObject.FindGameObjectWithTag("Stopwatch").GetComponent<SamirWatch>().time;
                 driving.updateScore(score);
