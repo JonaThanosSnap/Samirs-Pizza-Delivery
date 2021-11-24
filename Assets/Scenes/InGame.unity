@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.6253798, g: 0.4107053, b: 0.23245247, a: 1}
+  m_FogColor: {r: 0.758273, g: 0.44194442, b: 0.18313013, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.27264127, g: 0.3324749, b: 0.40718675, a: 1}
+  m_AmbientSkyColor: {r: 0.27579033, g: 0.27667952, b: 0.3028738, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -7702,6 +7702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73286e50e314a094cac1c0b34bce1f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeRatio: 0
   directionalLight: {fileID: 1842940058}
   preset: {fileID: 11400000, guid: 794cb8da1917d144280f40b5a8b5104d, type: 2}
   timeOfDay: 5.5
@@ -9557,7 +9558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1419198120
 MonoBehaviour:
   m_ObjectHideFlags: 0
