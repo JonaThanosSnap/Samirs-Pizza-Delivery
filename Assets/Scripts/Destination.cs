@@ -45,6 +45,11 @@ public class Destination : NetworkBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         parkStartTime = DateTime.Now;
+
+        if (collider.gameObject.name.Contains("Building"))
+        {
+            destMan.ChangeDestination();
+        }
     }
 
     private void OnTriggerExit(Collider collider)
@@ -53,7 +58,7 @@ public class Destination : NetworkBehaviour
     }
 
     void OnTriggerStay(Collider collider)
-    {
+    {    
         if (driving.rbVel.Value.magnitude < parkSpeedRequired)
         {
             parkTime = DateTime.Now.Subtract(parkStartTime);

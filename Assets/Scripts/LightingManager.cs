@@ -5,6 +5,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
+    [SerializeField] private float timeRatio;
     [SerializeField] private Light directionalLight;
     [SerializeField] private LightingPreset preset;
     [SerializeField, Range(0, 24)] private float timeOfDay;
@@ -15,7 +16,7 @@ public class LightingManager : MonoBehaviour
 
         if (Application.isPlaying)
         {
-            timeOfDay += Time.deltaTime*0.1f;
+            timeOfDay += Time.deltaTime*timeRatio;
             timeOfDay %= 24;
             UpdateLighting(timeOfDay/24.0f);
         }
