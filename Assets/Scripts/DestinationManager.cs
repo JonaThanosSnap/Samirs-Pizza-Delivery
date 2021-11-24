@@ -16,22 +16,41 @@ public class DestinationManager : NetworkBehaviour
 
     public int deliveriesRequired;
 
+    public GameObject dest;
 
     public void CreateDestination()
     {
         if (IsHost)
         {
-            Transform destinationTile = null;
-            while (destinationTile == null || destinationTile.gameObject.name == "TileProvider")
-            {
-                destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
-            }
-            Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
-            transformDestinationVertex.y = 0;
+            Vector3 transformDestinationVertex = GetRandomDestinationTransform();
 
-            GameObject dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity);
+            dest = Instantiate(destinationPrefab, transformDestinationVertex, Quaternion.identity);
             dest.GetComponent<NetworkObject>().Spawn();
         }
     }
 
+
+    public void ChangeDestination()
+    {
+        if (IsHost)
+        {
+            Vector3 transformDestinationVertex = GetRandomDestinationTransform();
+
+            dest.transform.position = transformDestinationVertex;
+        }
+    }
+
+
+    private Vector3 GetRandomDestinationTransform()
+    {
+        Transform destinationTile = null;
+        while (destinationTile == null || destinationTile.gameObject.name == "TileProvider")
+        {
+            destinationTile = navMap.transform.GetChild(Random.Range(0, navMap.transform.childCount - 1));
+        }
+        Vector3 transformDestinationVertex = destinationTile.GetChild(Random.Range(0, destinationTile.childCount - 1)).position;
+        transformDestinationVertex.y = 0;
+
+        return transformDestinationVertex;
+    }
 }

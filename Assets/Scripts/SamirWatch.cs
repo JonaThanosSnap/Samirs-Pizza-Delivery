@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class SamirWatch : MonoBehaviour
 {
     float currentTime;
     public TimeSpan time;
-    public Text currentTimeText;
-    public Text countdownText;
+    public TMP_Text currentTimeText;
+    public TMP_Text countdownText;
 
     public SerialController serialController;
 

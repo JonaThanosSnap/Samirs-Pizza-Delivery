@@ -5,6 +5,7 @@ using Unity.Netcode;
 using UnityEngine.UI;
 using Mapbox.Unity.Map;
 using System;
+using TMPro;
 
 public class driving : NetworkBehaviour
 {
@@ -18,7 +19,7 @@ public class driving : NetworkBehaviour
 
     public bool active;
     GameObject stopwatchCanvas;
-    Text countdownTxt;
+    TMP_Text countdownTxt;
 
     public NetworkVariable<Vector3> rbVel = new NetworkVariable<Vector3>();
     public NetworkVariable<int> Score = new NetworkVariable<int>();
@@ -70,7 +71,7 @@ public class driving : NetworkBehaviour
         GameObject.Find("DestinationManager").GetComponent<DestinationManager>().CreateDestination();
 
         stopwatchCanvas = Instantiate(ps.canvasPrefab, Vector3.zero, Quaternion.identity);
-        countdownTxt = stopwatchCanvas.GetComponent<SamirWatch>().countdownText.GetComponent<Text>();
+        countdownTxt = stopwatchCanvas.GetComponent<SamirWatch>().countdownText;
 
         active = false;
         StartCoroutine(Countdown(3));
