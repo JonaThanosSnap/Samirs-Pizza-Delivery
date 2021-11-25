@@ -5770,7 +5770,7 @@ MonoBehaviour:
       - m_Target: {fileID: 491868822}
         m_TargetAssemblyTypeName: CitySelector, Assembly-CSharp
         m_MethodName: SelectCity
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5835,8 +5835,8 @@ MonoBehaviour:
     lat: 40.7484665
     lng: -73.985542
   - name: London
-    lat: 51.512991
-    lng: -0.140454
+    lat: 51.5103245
+    lng: -0.1377444
   mapObj: {fileID: 2026351901}
   navMapObj: {fileID: 30812670}
 --- !u!21 &625894645
@@ -9586,7 +9586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1419198120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10383,6 +10383,7 @@ MonoBehaviour:
   destinationPrefab: {fileID: 6067237676964828487, guid: c33f047d168a737439563275e5355d4c, type: 3}
   navMap: {fileID: 2104459652}
   deliveriesRequired: 5
+  dest: {fileID: 0}
 --- !u!4 &1586998357
 Transform:
   m_ObjectHideFlags: 0

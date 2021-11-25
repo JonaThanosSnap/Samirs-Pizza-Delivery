@@ -51,9 +51,8 @@ public class CitySelector : MonoBehaviour
     public void SelectCity()
     {
         string cityName = dropdownMenu.captionText.text;
-        System.Single zoom = 16f;
-        map.UpdateMap(cityDict[cityName], zoom);
-        navMap.UpdateMap(cityDict[cityName], zoom);
+        map.UpdateMap(cityDict[cityName]);
+        navMap.SetCenterLatitudeLongitude(cityDict[cityName]);
         mapAni.RohansCoolFunction3();
     }
 }

@@ -657,7 +657,7 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 1
     Build: 0
-    Collab: 1
+    Collab: 0
     Game Performance: 0
     Purchasing: 0
     UDP: 0
@@ -676,11 +676,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 2c6ebcaf-4394-4e37-b5f8-81494926010d
+  cloudProjectId: cf1527ca-a98e-4066-83e3-98d5c289667d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Car Test
-  organizationId: rohan_shetty
+  projectName: Samir's Pizza Delivery
+  organizationId: trevorguanhaodu
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0
