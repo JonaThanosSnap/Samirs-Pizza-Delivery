@@ -31,9 +31,9 @@ void loop()
   x2Value = (x2Read)-bias2;
   x2Value = x2Value >= 0 ? x2Value / (1023 - bias2) : x2Value / bias2;
 
-  Serial.print(x1Value);
+  Serial.print(-1.0 * x1Value);
   Serial.print("\t");
-  Serial.println(x2Value);
+  Serial.println(-1.0 * x2Value);
 
   //lcd
   String time = Serial.readString();
